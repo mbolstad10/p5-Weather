@@ -1,106 +1,87 @@
-$.simpleWeather({
+ $('.temp').text(weather.temp);
+      $('.city').text(weather.city);
+      $('.currently').text(weather.currently);
+
+   $.simpleWeather({
     location: 'Austin, TX',
     woeid: '',
     unit: 'f',
     success: function(weather) {
-      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
-  
-      $("#weather").html(html);
+     // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      //html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+     // html += '<li class="currently">'+weather.currently+'</li>';
+     // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
+    
+
+
+      $('.temp').text(weather.temp);
+      $('.city').text(weather.city);
+      $('.currently').text(weather.currently);
+
+     
     },
     error: function(error) {
       $("#weather").html('<p>'+error+'</p>');
     }
   });
+
+
+// REF: http://foundation.zurb.com/docs/
+// REF: http://simpleweatherjs.com/
+
+// On click button, get zip, then run Simple Weather
+$('button').on('click', function() {
+  
+  // 1. Get & store entered zipcode
+  var zipcode = $('#getWeather').val();
+  
+  // 2. Pass weather into _simpleWeather()_ object
+  $.simpleWeather({
+    
+    location: zipcode,
+  
+    success: function(weather) {
+      
+      // Get & store temperature
+      var temp = weather.temp;
+      // Get & store city
+      var city = weather.city;
+      // Get & store Currently
+      var currently = weather.currently;
+      
+      // Output to hooks in HTML
+      $('.temp').text(temp);
+      $('.city').text(city);
+      $('.currently').text(currently);
+
+      // See console for all properties of object
+      console.log(weather);
+    },
+  
+    error: function(error) {
+      $('body').html('<p>' + error + '</p>');
+    }
+  
+  });
+  
+  // 3. Reset input value
+  $('#getWeather').val('');
+  
 });
 
-var icons = { 
-      "clear-day" : "B", 
-      "clear-night" : "C", 
-      "rain" : "R", 
-      "snow" : "G", 
-      "sleet" : "X", 
-      "wind" : "S", 
-      "fog" :"N", 
-      "cloudy" : "Y",
-      "partly-cloudy-day" : "H", 
-      "partly-cloudy-night" : "I"
-    };
- 
-    // Cities
-    var cities = {
-      "Seattle" : {coords: {latitude: 47.6097, longitude:122.3331}},
-      "Spokane" : {coords: {latitude: 47.6589, longitude: 117.4250 }},
-      "Cheney" : {coords: {latitude:47.4886, longitude: 117.5786}},
-      
-      };
 
 
-      // Get Weather  
-    function loadWeather(cityCoords){
-      
-      console.log(cityCoords);
- 
-      var latlng = cityCoords.coords.latitude + "," + cityCoords.coords.longitude;
-              
-      var forecastURL = "https://api.forecast.io/forecast/e79ce4f49850f7741774f156ee9198bc/" + latlng;
- 
-      $.ajax({
-          url: forecastURL,
-          jsonpCallback: 'jsonCallback',
-          contentType: "application/json",
-          dataType: 'jsonp',
-          success: function(json) {
- 
-            // Returned Data 
-            console.log(json);
- 
-            // Display Data Dynamically
-            $("#current_temp").html(Math.round(json.currently.temperature)+"&#176;F");
-            $("#current_summary").html(json.currently.summary);
-            $("#current_temp").attr("data-icon",icons[json.currently.icon]);
- 
-          },
-          error: function(e) {
-             console.log(e.message);
-          }
-      });
- 
-    }
+
+$.simpleWeather({
+    location: 'Austin, TX',
+    woeid: '',
+    unit: 'f',
+    success: function(weather) {
+     // html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+      //html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+     // html += '<li class="currently">'+weather.currently+'</li>';
+     // html += '<li>'+weather.wind.direction+' '+weather.wind.speed+' '+weather.units.speed+'</li></ul>';
     
-    function loadCity(city){
-      $("#location").html(city);
 
-      if (city.toLowerCase() == "current location") {
-        if ( navigator.geolocation )
-          navigator.geolocation.getCurrentPosition(loadWeather,loadDefaultCity);
-        else {
-          loadDefaultCity();
-        }
 
-      } else {
-        loadWeather(cities[city.toLowerCase()]);
-      }
-
-    }
-
-    function loadDefaultCity(){
-      loadCity("Cheney");
-    }
-    
- 
-    // On Page Load
-    $(document).ready(function(){
- 
-      // Load City, then load weather
-      loadCity("Cheney");
- 
-      // Bind click to City
- 
-      $(".item").bind("click",function(){
-        loadCity($(this).html());
-      });
- 
-    });
+     

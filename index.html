@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
+
+
   <title>p5 weather</title>
 
   <link rel="stylesheet" type="text/css" href="css/semantic.css">
@@ -15,50 +17,38 @@
 </head>
 
 <body>
-  
-  <h1></h1>
-  <div class="ui vertical pointing menu">
-  <a class="active item">
-    <i class="bullseye icon"></i> Ellensburg
-  </a>
-  <a class="item">
-    <i class="bullseye icon"></i> Seattle
-  </a>
-  <a class="item">
-    <i class="bullseye icon"></i> Spokane
-  </a>
-   <a class="item">
-    <i class="bullseye icon"></i> Cheney
-  </a>
- </div>
 
- <!-- weather -->
-
-  <div >
-    <h1>Weather</h1>
+ <div class="ui padded grid">
+    <div class="teal column">
+      
+      <h2 class="ui inverted header sun icon">Weather</h2>
+      <i class="sun icon massive"></i>
+      <p>Type Zip Code</p>
     </div>
   
-    <div class="weather">
-    <h1 id="current_temp" class="icon" data-icon="B">65&#176;F</h1>
-    <p id="current_summary">Partly Cloudy</p>
-    <p id="location">Current Location</p> 
-    
-  </div>
- 
+</div>
 
+<div>
+  <input type="text" id="getWeather"/>
+  <button>Get Weather</button>
+</div>
 
-
-
-
+<!-- Output Weather --> 
+<ul>
+  <li class="currently"></li>
+  <li class="city"> </li>
+  <li class="temp"> </li>
    
+</ul>
 
 
- 
+
+
   
   <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/semantic.js"></script>
-  <script src="js/Weather.js"></script>
+  <script src="js/weather.js"></script>
 
 </body>
 </html>

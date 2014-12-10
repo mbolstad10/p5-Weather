@@ -1,3 +1,11 @@
 .weather{
   float: center;
 }
+
+input,li{
+  color:black;
+}
+
+body{
+  background: url("../img/skulls.png") center center repeat fixed red;
+}
