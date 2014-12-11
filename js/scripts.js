@@ -21,7 +21,7 @@
      
     },
     error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
+      $("#getweather").html('<p>'+error+'</p>');
     }
   });
 
